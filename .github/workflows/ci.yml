@@ -90,7 +90,7 @@ jobs:
         run: yarn prebuild-napi-arm64
       - name: Prebuild (arm64) on Ubuntu
         if: matrix.friendlyName == 'Ubuntu'
-        run: CC=aarch64-linux-gnu-gcc LD=/usr/aarch64-linux-gnu/bin/ld yarn prebuild-napi-arm64
+        run: CC=aarch64-linux-gnu-gcc LD=aarch64-linux-gnu-ld yarn prebuild-napi-arm64
       - name: Prebuild (Windows x86)
         run: yarn prebuild-napi-ia32
         if: matrix.friendlyName == 'Windows'
