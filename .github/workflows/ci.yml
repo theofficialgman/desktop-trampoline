@@ -54,6 +54,8 @@ jobs:
           echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
           sudo apt-get update
           sudo apt-get install -y yarn
+          # install arm64 cross compilers
+          sudo apt-get install -y gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu
       - uses: actions/checkout@v2
         with:
           submodules: recursive
@@ -83,8 +85,12 @@ jobs:
         shell: bash
       - name: Prebuild (x64)
         run: yarn prebuild-napi-x64
-      - name: Prebuild (arm64)
+      - name: Prebuild (arm64) on not Ubuntu
+        if: matrix.friendlyName != 'Ubuntu'
         run: yarn prebuild-napi-arm64
+      - name: Prebuild (arm64) on Ubuntu
+        if: matrix.friendlyName == 'Ubuntu'
+        run: CC=aarch64-linux-gnu-gcc yarn prebuild-napi-arm64
       - name: Prebuild (Windows x86)
         run: yarn prebuild-napi-ia32
         if: matrix.friendlyName == 'Windows'
