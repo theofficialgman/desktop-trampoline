@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/desktop/desktop-trampoline.git"
+    "url": "git+https://github.com/theofficialgman/desktop-trampoline.git"
   },
   "bugs": {
-    "url": "https://github.com/desktop/desktop-trampoline/issues"
+    "url": "https://github.com/theofficialgman/desktop-trampoline/issues"
   },
-  "homepage": "https://github.com/desktop/desktop-trampoline#readme",
+  "homepage": "https://github.com/theofficialgman/desktop-trampoline#readme",
   "dependencies": {
     "node-addon-api": "^4.3.0",
     "prebuild-install": "^7.0.1"
