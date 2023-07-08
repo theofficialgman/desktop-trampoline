@@ -51,7 +51,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-          cache: yarn
       - name: Install unofficial-builds Node.js ${{ matrix.node }} on Ubuntu
         if: matrix.friendlyName == 'Ubuntu'
         run: |
