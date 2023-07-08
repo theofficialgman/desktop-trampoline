@@ -35,10 +35,13 @@
   },
   "devDependencies": {
     "jest": "^27.5.0",
-    "node-gyp": "^8.4.1",
-    "prebuild": "^11.0.3",
+    "node-gyp": "^9.4.0",
+    "prebuild": "^11.0.4",
     "prettier": "^2.5.1",
     "split2": "^4.1.0"
+  },
+  "resolutions": {
+    "node-gyp": "^9.4.0"
   },
   "binary": {
     "napi_versions": [
