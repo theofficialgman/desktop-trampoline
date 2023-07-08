@@ -12,21 +12,38 @@ jobs:
   build:
     name: ${{ matrix.friendlyName }}
     runs-on: ${{ matrix.os }}
+    container: ${{ matrix.image }}
     timeout-minutes: 10
 
     strategy:
       fail-fast: false
       matrix:
         node: [14.15.4]
-        os: [macos-latest, windows-latest, ubuntu-18.04]
+        os: [macos-latest, windows-latest, ubuntu-latest]
         include:
           - os: macos-latest
             friendlyName: macOS
           - os: windows-latest
             friendlyName: Windows
-          - os: ubuntu-18.04
-            friendlyName: Linux
+          - os: ubuntu-latest
+            friendlyName: Ubuntu
+            image: ubuntu:18.04
     steps:
+      - name: Install dependencies into dockerfile on Ubuntu
+        if: matrix.friendlyName == 'Ubuntu'
+        run: |
+          # ubuntu dockerfile is very minimal (only 122 packages are installed)
+          # add dependencies expected by scripts
+          apt update
+          apt install -y software-properties-common lsb-release \
+          sudo wget curl build-essential jq autoconf automake \
+          pkg-config ca-certificates rpm \
+          # install new enough git to run actions/checkout
+          sudo add-apt-repository ppa:git-core/ppa -y
+          sudo apt update
+          sudo apt install -y git
+          # avoid "fatal: detected dubious ownership in repository" error
+          git config --global --add safe.directory '*'
       - uses: actions/checkout@v2
         with:
           submodules: recursive
@@ -57,7 +74,6 @@ jobs:
         run: npm run prebuild-napi-x64
       - name: Prebuild (arm64)
         run: npm run prebuild-napi-arm64
-        if: ${{ matrix.os != 'ubuntu-18.04' }}
       - name: Prebuild (Windows x86)
         run: npm run prebuild-napi-ia32
         if: ${{ matrix.os == 'windows-latest' }}
