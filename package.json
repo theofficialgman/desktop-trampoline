@@ -23,22 +23,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/desktop/desktop-trampoline.git"
+    "url": "git+https://github.com/theofficialgman/desktop-trampoline.git"
   },
   "bugs": {
-    "url": "https://github.com/desktop/desktop-trampoline/issues"
+    "url": "https://github.com/theofficialgman/desktop-trampoline/issues"
   },
-  "homepage": "https://github.com/desktop/desktop-trampoline#readme",
+  "homepage": "https://github.com/theofficialgman/desktop-trampoline#readme",
   "dependencies": {
     "node-addon-api": "^4.3.0",
     "prebuild-install": "^7.0.1"
   },
   "devDependencies": {
     "jest": "^27.5.0",
-    "node-gyp": "^8.4.1",
-    "prebuild": "^11.0.3",
+    "node-gyp": "^9.4.0",
+    "prebuild": "^11.0.4",
     "prettier": "^2.5.1",
     "split2": "^4.1.0"
+  },
+  "resolutions": {
+    "node-gyp": "^9.4.0"
   },
   "binary": {
     "napi_versions": [
