@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [14.15.4]
+        node: [16.20.1]
         os: [macos-latest, windows-latest, ubuntu-latest]
         include:
           - os: macos-latest
@@ -60,7 +60,7 @@ jobs:
       # https://github.com/nodejs/build/issues/2450#issuecomment-705853342
       - run: |
           $NodeVersion = (node --version) -replace '^.'
-          $NodeFallbackVersion = "15.8.0"
+          $NodeFallbackVersion = "16.20.0"
           & .\script\download-node-lib-win-arm64.ps1 $NodeVersion $NodeFallbackVersion
         if: ${{ matrix.os == 'windows-latest' }}
         name: Install Windows arm64 node.lib
