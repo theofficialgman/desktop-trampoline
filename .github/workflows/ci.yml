@@ -51,9 +51,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - name: Install unofficial-builds Node.js ${{ matrix.node }} on Ubuntu
+      - name: Install yarn on Ubuntu
         if: matrix.friendlyName == 'Ubuntu'
         run: |
+          hash -r
           sudo npm install --global yarn
 
       # This step can be removed as soon as official Windows arm64 builds are published:
